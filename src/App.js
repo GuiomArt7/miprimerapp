@@ -10,7 +10,10 @@ function App() {
       <div>
         El valor de mi contador es: {contador}
       </div>
-      <button>Aumentar contador</button>
+      <button
+      onClick={()=>{
+        setContador(contador + 1);
+      }}>Aumentar contador</button>
   </div>
   );
 }
