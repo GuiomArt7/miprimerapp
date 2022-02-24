@@ -10,6 +10,7 @@ function App() {
       <div>
         El valor de mi contador es: {contador}
       </div>
+      <button>Aumentar contador</button>
   </div>
   );
 }
