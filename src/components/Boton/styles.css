@@ -1,5 +1,9 @@
 .boton-componente{
     color: #fff;
     background-color: #073B95;
-    
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 00.3rem;
 }
