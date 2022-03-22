@@ -12,7 +12,7 @@ function App() {
   //Error
   const[error, setError]= useState(true);
   //Data
-  const [data, setData]= useState([null]);
+  const [data, setData]= useState([]);
   //Función FETCH: Llama a una API(BACKEND)
   //FUNCIÓN DE FLECHA: nombreFunción = () => {}
 
@@ -86,3 +86,4 @@ function App() {
 }
 
 export default App;
+//https://github.com/hackademymx/frontendReact/tree/Mar-1 
