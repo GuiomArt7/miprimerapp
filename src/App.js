@@ -12,7 +12,7 @@ function App() {
   //Error
   const[error, setError]= useState(true);
   //Data
-  const [data, setData]= useState([]);
+  const [data, setData]= useState([null]);
   //Función FETCH: Llama a una API(BACKEND)
   //FUNCIÓN DE FLECHA: nombreFunción = () => {}
 
@@ -21,31 +21,58 @@ function App() {
   const getUsers = async()=>{
     try{
       //Empezamos la petición y mostramos la pantalla de carga
-      setError(false);
-      setLoading(true);
-      //Todo el código que puede romperse o mandar a un error
-      let response = await fetch(urlApi);
-      let data = await response;
+      //Si teníamos algún error previo lo quitamos
+      setError(false); 
+      //Activamos la pantalla de carga
+      setLoading(true); 
+      //***Todo el código que puede romperse o mandar a un error
+
+      //Llamar al backend o API
+      let response = await fetch(urlApi); 
+
+      //Recabar la info
+      let data = await response.json(); 
+
       //Si todo va bien y no hubo error, quitamos la pantalla de carga y guardamos la data
       setLoading(false);
       setData(data);
+
+     //fetch(urlApi).then(response=>{
+     //  response.json();
+     //})
+     //.then((data) => {
+     //  console.log(data);
+     //})
     }catch(error){
       //Es el código que se ejecutará cuando ocurra algún error
       setLoading(false)
       setError(true);
     }
   };
-  useEffect(()=>{
-    getUsers();
-  },[])
+
+  const returnUsers = ()=> {
+    return(
+      <div className="users__box"> 
+      {data?.map((item, index)=> (
+        <div className="user__card" key={index}>
+          <span>{item.name}</span>
+        </div>
+      ))}
+      </div>
+    )
+  }
+  //useEffect(()=>{
+  //  getUsers();
+  //},[])
 
   return (
   <div className="App">
+      <Boton text="Cargar datos" onClick={getUsers}/>
       {loading === true && (
       <img src={"https://c.tenor.com/XgaU95K_XiwAAAAC/kermit-typing.gif"} 
       alt= "Cargando" />
       )}
-      {data && (
+      {data !== null && (
       <img src={"https://c.tenor.com/kWLw9xk_V-kAAAAC/kermit-smiling.gif"} 
       alt= "Todo salió bien" />
       )}
@@ -53,6 +80,7 @@ function App() {
       <img src={"https://c.tenor.com/lpfGANy32AcAAAAC/kermit-kermit-the-frog.gif"} 
       alt= "Error" />
       )}
+      {returnUsers()}
   </div>
   );
 }
