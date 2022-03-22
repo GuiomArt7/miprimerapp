@@ -4,6 +4,7 @@ import {Boton} from "./components/Boton";
 import './App.css';
 
 function App() {
+  const [loading, setLoading] = useState(false);
   //* Use state
   const [contador, setContador] = useState(0);
   const [nombre, setNombre] = useState("");
